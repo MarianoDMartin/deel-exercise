@@ -1,3 +1,5 @@
+const { Op } = require('sequelize')
+
 async function get (req, res) {
   const { Contract } = req.app.get('models')
   const { id } = req.params
@@ -14,6 +16,25 @@ async function get (req, res) {
   res.json(contract)
 }
 
+async function list (req, res) {
+  const { Contract } = req.app.get('models')
+
+  const contracts = await Contract.findAll({
+    where: {
+      [Op.or]: [
+        { ContractorId: req.profile.id },
+        { ClientId: req.profile.id }
+      ],
+      status: {
+        [Op.not]: 'terminated'
+      }
+    }
+  })
+
+  res.json(contracts)
+}
+
 module.exports = {
-  get
+  get,
+  list
 }

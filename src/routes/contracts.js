@@ -8,4 +8,9 @@ const { getProfile } = require('../middlewares/getProfile')
  */
 router.get('/:id', getProfile, contractsController.get)
 
+/**
+ * @returns a list of non terminated contracts belonging to a user
+ */
+router.get('/', getProfile, contractsController.list)
+
 module.exports = router
