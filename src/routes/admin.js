@@ -7,4 +7,9 @@ const adminController = require('../controllers/admin')
  */
 router.get('/best-profession', adminController.bestProfession)
 
+/**
+ * @returns the clients the paid the most for jobs
+ */
+router.get('/best-clients', adminController.bestClients)
+
 module.exports = router
