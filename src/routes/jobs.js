@@ -8,4 +8,9 @@ const { getProfile } = require('../middlewares/getProfile')
  */
 router.get('/unpaid', getProfile, jobsController.listUpdaid)
 
+/**
+ * pay for a job
+ */
+router.post('/:job_id/pay', getProfile, jobsController.pay)
+
 module.exports = router
